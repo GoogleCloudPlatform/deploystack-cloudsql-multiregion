@@ -1,0 +1,24 @@
+{
+  "title": "Basic Title",
+  "duration": 5,
+  "collect_project": true,
+  "collect_region": true,
+  "region_type": "functions",
+  "region_default": "us-central1",
+  "collect_zone": true,
+  "hard_settings": {
+    "basename": "appprefix"
+  },
+  "custom_settings": [
+    {
+      "name": "nodes",
+      "description": "Please enter the number of nodes",
+      "options": [
+        "roles/reviewer|Project Reviewer",
+        "roles/owner|Project Owner",
+        "roles/vison.reader|Cloud Vision Reader"
+      ],
+      "default": "roles/owner|Project Owner"
+    }
+  ]
+}
