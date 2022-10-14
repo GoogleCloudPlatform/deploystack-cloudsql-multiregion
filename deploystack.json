@@ -1,24 +1,27 @@
 {
-  "title": "Basic Title",
+  "title": "Deploy a Load Balancer protected by Cloud Armor with a Managed Instanance Group in Compute Engine as the backend",
   "duration": 5,
   "collect_project": true,
   "collect_region": true,
+  "register_domain": false,
+  "configure_gce_instance": false,
   "region_type": "functions",
-  "region_default": "us-central1",
-  "collect_zone": true,
-  "hard_settings": {
-    "basename": "appprefix"
-  },
+  "region_default": "europe-west1",
   "custom_settings": [
     {
-      "name": "nodes",
-      "description": "Please enter the number of nodes",
-      "options": [
-        "roles/reviewer|Project Reviewer",
-        "roles/owner|Project Owner",
-        "roles/vison.reader|Cloud Vision Reader"
-      ],
-      "default": "roles/owner|Project Owner"
+      "name": "enforce_security_policy",
+      "description": "Enforce security policy.",
+      "default": "true"
+    },
+    {
+      "name": "prefix",
+      "description": "Unique prefix used for resource names. Not used for project if 'project_create' is null.",
+      "default": ""
+    },
+    {
+      "name": "project_create",
+      "description": "Provide values if project creation is needed, uses existing project if null. Parent is in 'folders/nnn' or 'organizations/nnn' format.",
+      "default": "null"
     }
   ]
 }
