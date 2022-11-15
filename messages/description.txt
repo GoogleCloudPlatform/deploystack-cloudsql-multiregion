@@ -1,0 +1,6 @@
+This process will create and configure:
+* VPC
+* Cloud NAT
+* GCS bucket
+* Cloud SQL instance for PostgreSQL
+* GCE instance
