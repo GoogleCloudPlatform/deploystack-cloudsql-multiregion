@@ -24,7 +24,7 @@ locals {
 }
 
 module "test-vm" {
-  source     = "../../../modules/compute-vm"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules/compute-vm?ref=v18.0.0"
   project_id = module.project.project_id
   zone       = "${var.regions.primary}-b"
   name       = "sql-test"
