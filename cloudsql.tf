@@ -13,7 +13,7 @@
 # limitations under the License.
 
 module "db" {
-  source              = "github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules//cloudsql-instance?ref=v18.0.0"
+  source              = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/cloudsql-instance?ref=v18.0.0"
   project_id          = module.project.project_id
   availability_type   = var.sql_configuration.availability_type
   encryption_key_name = var.service_encryption_keys != null ? try(var.service_encryption_keys[var.regions.primary], null) : null
@@ -56,7 +56,7 @@ resource "google_sql_user" "service-account" {
 }
 
 module "service-account-sql" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric/modules//iam-service-account?ref=v18.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v18.0.0"
   project_id = module.project.project_id
   name       = "${var.prefix}-sql"
 }
