@@ -71,7 +71,7 @@ locals {
 }
 
 module "project" {
-  source          = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v18.0.0"
+  source          = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v19.0.0"
   name            = var.project_id
   parent          = try(var.project_create.parent, null)
   billing_account = try(var.project_create.billing_account_id, null)
@@ -109,7 +109,7 @@ module "project" {
 }
 
 module "vpc" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc?ref=v18.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc?ref=v19.0.0"
   count      = local.use_shared_vpc ? 0 : 1
   project_id = module.project.project_id
   name       = "vpc"
@@ -129,7 +129,7 @@ module "vpc" {
 }
 
 module "firewall" {
-  source       = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v18.0.0"
+  source       = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v19.0.0"
   count        = local.use_shared_vpc ? 0 : 1
   project_id   = module.project.project_id
   network      = module.vpc.0.name
@@ -137,7 +137,7 @@ module "firewall" {
 }
 
 module "nat" {
-  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v18.0.0"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v19.0.0"
   count          = local.use_shared_vpc ? 0 : 1
   project_id     = module.project.project_id
   region         = var.regions.primary

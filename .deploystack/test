@@ -78,29 +78,29 @@ terraform apply  \
    -auto-approve
 
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v18.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v19.0.0 exists"
     evalTest 'gsutil ls | grep -c gs://data' "0"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v18.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v19.0.0 exists"
     #TODO: This should be an email and not just an account, so add the @domain.com bit
     evalTest 'gcloud iam service-accounts describe  --format="value(email)"' ""
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v18.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v19.0.0 exists"
     #TODO: This should be an email and not just an account, so add the @domain.com bit
     evalTest 'gcloud iam service-accounts describe  --format="value(email)"' ""
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v18.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v19.0.0 exists"
     evalTest 'gcloud projects describe var.project_id --format="value(name)"' ""
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v18.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v19.0.0 exists"
     evalTest 'gcloud compute firewalls describe  --zone $ZONE --format="value(name)"' ""
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v18.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v19.0.0 exists"
     #TODO: This may or may not work, review please
     evalTest 'gcloud compute routers describe ${var.prefix}-default --region $REGION --format="value(name)"' ""
 section_close
@@ -121,29 +121,29 @@ terraform destroy  \
    -auto-approve
 
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v18.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v19.0.0 does not exists"
     evalTest 'gsutil ls | grep -c gs://data' "EXPECTERROR"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v18.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v19.0.0 does not exists"
     #TODO: This should be an email and not just an account, so add the @domain.com bit
     evalTest 'gcloud iam service-accounts describe  --format="value(email)"' "EXPECTERROR"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v18.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v19.0.0 does not exists"
     #TODO: This should be an email and not just an account, so add the @domain.com bit
     evalTest 'gcloud iam service-accounts describe  --format="value(email)"' "EXPECTERROR"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v18.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v19.0.0 does not exists"
     evalTest 'gcloud projects describe var.project_id --format="value(name)"' "EXPECTERROR"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v18.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v19.0.0 does not exists"
     evalTest 'gcloud compute firewalls describe  --zone $ZONE --format="value(name)"' "EXPECTERROR"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v18.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v19.0.0 does not exists"
     #TODO: This may or may not work, review please
     evalTest 'gcloud compute routers describe ${var.prefix}-default --region $REGION --format="value(name)"' "EXPECTERROR"
 section_close
