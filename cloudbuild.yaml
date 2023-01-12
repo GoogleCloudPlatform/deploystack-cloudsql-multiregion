@@ -3,7 +3,7 @@ steps:
     args:
       - 'init'
   - name: 'hashicorp/terraform'
-    args: ['plan', '-var', 'project_id=$PROJECT_ID', '-var', 'postgres_user_password=$POSTGRES_USER_PASSWORD']
+    args: ['plan', '-var', 'project_id=$PROJECT_ID', '-var', 'postgres_user_password=$$POSTGRES_USER_PASSWORD']
     secretEnv: ['POSTGRES_USER_PASSWORD']
   - name: 'hashicorp/terraform'
     args: ['apply', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack', '-auto-approve']
