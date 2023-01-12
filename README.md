@@ -33,45 +33,26 @@ This blueprint will deploy all its resources into the project defined by the `pr
 
 If `project_create` is left to `null`, the identity performing the deployment needs the `owner` role on the project defined by the `project_id` variable. Otherwise, the identity performing the deployment needs `resourcemanager.projectCreator` on the resource hierarchy node specified by `project_create.parent` and `billing.user` on the billing account specified by `project_create.billing_account_id`.
 
-## Deployment
+### Spinning Up The Architecture
 
-### Step 0: Cloning the repository
-
-Click on the image below, sign in if required and when the prompt appears, click on “confirm”.
-
-[<p align="center"> <img alt="Open Cloudshell" width = "300px" src="images/button.png" /> </p>](https://goo.gle/GoCloudSQL)
-
-This will clone the repository to your cloud shell and a screen like this one will appear:
-
-![Import package](images/image1.png)
-
-Before you deploy the architecture, make sure you run the following command to move your cloudshell session  into your service project: `gcloud config set project [SERVICE_PROJECT_ID]`
 
 Before we deploy the architecture, you will need the following information:
 
 - The service project ID.
 - A unique prefix that you want all the deployed resources to have (for example: cloudsql-multiregion-hpjy). This must be a string with no spaces or tabs.
 
-Once you can see your service project id in the yellow parenthesis, you’re ready to start.
+Click on the button below, sign in if required and when the prompt appears, click on “confirm”. It will walk you through setting up your architecture.
 
-### Step 1: Deploy resources
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2FGoogleCloudPlatform%2Fdeploystack-cloudsql-multiregion&cloudshell_image=gcr.io%2Fds-artifacts-cloudshell%2Fdeploystack_custom_image&cloudshell_git_branch=main)
 
-Once you have the required information, head back to the cloud shell editor. Make sure you’re in the following directory: `cloudshell_open/cloud-foundation-fabric/blueprints/data-solutions/cloudsql-multiregion/`
+This is the startup screen that appears after clicking the button and confirming:
 
-Configure the Terraform variables in your `terraform.tfvars` file. You need to specify at least the `project_id` and `prefix` variables. See  [`terraform.tfvars.sample`](terraform.tfvars.sample) as starting point.
+During the process, you will be asked for some user input. All necessary variables are explained at the bottom of this ReadMe file. In case of failure, you can simply click the button again.
 
-![Deploy ressources](images/image2.png)
+<center>
+<h4>🎉 Congratulations! 🎉  <br />
+You have successfully deployed your environment on Google Cloud.</h4></center>
 
-Run Terraform init:
-
-```shell
-terraform init
-terraform apply
-```
-
-The resource creation will take a few minutes, at the end this is the output you should expect for successful completion along with a list of the created resources:
-
-![Ressources installed](images/image3.png)
 
 ## Move to real use case consideration
 
@@ -124,12 +105,12 @@ You can find computed commands on the Terraform `demo_commands` output.
 
 To implement a fallback to your original region (R1) after it becomes available, you can follow the same process that is described in the above section. The process is summarized [here](https://cloud.google.com/architecture/cloud-sql-postgres-disaster-recovery-complete-failover-fallback#phase_3_implementing_a_fallback).
 
-## Clean up your environment
+## Cleaning up your environment
 
 The easiest way to remove all the deployed resources is to run the following command in Cloud Shell:
 
-```shell
-terraform destroy 
+``` {shell}
+deploystack uninstall
 ```
 
 The above command will delete the associated resources so there will be no billable charges made afterwards.
