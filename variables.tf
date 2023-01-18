@@ -80,7 +80,6 @@ variable "regions" {
   }
 }
 
-
 variable "sql_configuration" {
   description = "Cloud SQL configuration"
   type = object({
