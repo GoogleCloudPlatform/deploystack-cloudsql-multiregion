@@ -23,7 +23,7 @@ The solution will use:
 
 This is the high level diagram:
 
-![Cloud SQL multi-region.](images/diagram.png "Cloud SQL multi-region")
+![Cloud SQL multi-region.](diagram.png "Cloud SQL multi-region")
 
 If you're migrating from another Cloud Provider, refer to [this](https://cloud.google.com/free/docs/aws-azure-gcp-service-comparison) documentation to see equivalent services and comparisons in Microsoft Azure and Amazon Web Services.
 
@@ -46,6 +46,7 @@ Click on the button below, sign in if required and when the prompt appears, clic
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2FGoogleCloudPlatform%2Fdeploystack-cloudsql-multiregion&cloudshell_image=gcr.io%2Fds-artifacts-cloudshell%2Fdeploystack_custom_image&cloudshell_git_branch=main)
 
 This is the startup screen that appears after clicking the button and confirming:
+![cloud_shell](cloud_shell.png)
 
 During the process, you will be asked for some user input. All necessary variables are explained at the bottom of this ReadMe file. In case of failure, you can simply click the button again.
 
