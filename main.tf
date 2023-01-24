@@ -71,7 +71,7 @@ locals {
 }
 
 module "project" {
-  source          = "../../../modules/project"
+  source          = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v19.0.0"
   name            = var.project_id
   parent          = try(var.project_create.parent, null)
   billing_account = try(var.project_create.billing_account_id, null)
@@ -109,10 +109,10 @@ module "project" {
 }
 
 module "vpc" {
-  source     = "../../../modules/net-vpc"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc?ref=v19.0.0"
   count      = local.use_shared_vpc ? 0 : 1
   project_id = module.project.project_id
-  name       = "vpc"
+  name       = "${var.prefix}-vpc"
   subnets = [
     {
       ip_cidr_range      = "10.0.0.0/20"
@@ -129,15 +129,17 @@ module "vpc" {
 }
 
 module "firewall" {
-  source       = "../../../modules/net-vpc-firewall"
-  count        = local.use_shared_vpc ? 0 : 1
-  project_id   = module.project.project_id
-  network      = module.vpc.0.name
-  admin_ranges = ["10.0.0.0/20"]
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v19.0.0"
+  count      = local.use_shared_vpc ? 0 : 1
+  project_id = module.project.project_id
+  network    = module.vpc.0.name
+  default_rules_config = {
+    admin_ranges = ["10.0.0.0/20"]
+  }
 }
 
 module "nat" {
-  source         = "../../../modules/net-cloudnat"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v19.0.0"
   count          = local.use_shared_vpc ? 0 : 1
   project_id     = module.project.project_id
   region         = var.regions.primary
