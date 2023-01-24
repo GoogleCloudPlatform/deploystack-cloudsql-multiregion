@@ -1,2 +1,0 @@
-Congratulations !!!
-You have successfully deploy this architecture.
