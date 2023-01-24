@@ -1,0 +1,35 @@
+"title": "Cloud SQL instance with multi-region read replicas"
+"duration": 20
+"collect_project": true
+"collect_region": true
+"register_domain": false
+"configure_gce_instance": false
+"region_type": "compute"
+"region_default": "europe-west1"
+"custom_settings":
+  - "name": "project_id"
+    "description": "Project id, references existing project if `project_create` is null"
+    "default": ""
+  - "name": "prefix"
+    "description": "Unique prefix used for resource names. Not used for project if 'project_create' is null"
+    "default": "deploystack"
+  - "name": "postgres_user_password"
+    "description": "Postgres user password"
+    "default": "P0stgr3SQLP@ssw0rd"
+  - "name": "postgres_database"
+    "description": "PostgreSQL database"
+    "default": "guestbook"
+#  - "name": "regions"
+#    "description": "The region where resources will be deployed"
+#    "default": "europe-west1"
+#  - "name": "data_eng_principals"
+#    "description": "Groups with Service Account Token creator role on service accounts in IAM format, eg 'group:group@domain.com'."
+#    "default": ""
+#  - "name": "network_config"
+#    "description": "Shared VPC network configurations to use. If null networks will be created in projects with preconfigured values."
+#    "default": "null"
+#  - "name": "service_encryption_keys"
+#    "description": "Cloud KMS keys to use to encrypt resources. Provide a key for each reagion configured."
+#    "default": "null"
+#  - "name": "sql_configuration"
+#    "description": "Cloud SQL configuration."
