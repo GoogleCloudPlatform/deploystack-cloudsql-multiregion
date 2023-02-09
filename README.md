@@ -43,7 +43,7 @@ Before we deploy the architecture, you will need the following information:
 
 Click on the button below, sign in if required and when the prompt appears, click on “confirm”. It will walk you through setting up your architecture.
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/GoogleCloudPlatform/deploystack-cloudsql-multiregion)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/GoogleCloudPlatform/deploystack-cloudsql-multiregion&cloudshell_image=gcr.io%2Fds-artifacts-cloudshell%2Fdeploystack_custom_image&cloudshell_git_branch=main)
 
 This is the startup screen that appears after clicking the button and confirming:
 ![cloud_shell](cloud_shell.png)
