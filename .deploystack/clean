@@ -88,11 +88,14 @@ CMEK_ENCRYPTION=true
 
 section_open "Deleting buckets"
     gcloud storage rm --recursive gs://${PREFIX}-data
-    gcloud storage rm --recursive gs://${PREFIX}-df-tmp
 section_close
 
-section_open "Delete BigQuery datasets"
-    bq rm -r -f datalake
+section_open "Delete attached disk"
+    gcloud compute disks delete sql-test-attached-disk --zone ${REGION}-b -q
+section_close
+
+section_open "Delete instance SQL Test"
+    gcloud compute instances delete sql-test --zone ${REGION}-b -q
 section_close
 
 section_open "Delete CloudNAT"
@@ -119,15 +122,15 @@ section_open "Delete VPC"
 section_close
 
 section_open "Delete all Permissions"
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
+printf "Disabling ${PREFIX} GCS Service Account from creating object in bucket on $PROJECT\n"
     gcloud projects remove-iam-policy-binding $PROJECT \
     --member serviceAccount:${PREFIX}-gcs@${PROJECT}.iam.gserviceaccount.com \
     --role roles/storage.objectAdmin --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
+printf "Disabling ${PREFIX} SQL Service Account from connecting to Cloud SQL on $PROJECT\n"
     gcloud projects remove-iam-policy-binding $PROJECT \
     --member serviceAccount:${PREFIX}-sql@${PROJECT}.iam.gserviceaccount.com \
     --role roles/cloudsql.instanceUser --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
+printf "Disabling ${PREFIX} SQL Service Account from connecting to Cloud SQL on $PROJECT\n"
     gcloud projects remove-iam-policy-binding $PROJECT \
     --member serviceAccount:${PREFIX}-sql@${PROJECT}.iam.gserviceaccount.com \
     --role roles/cloudsql.client --no-user-output-enabled --all
