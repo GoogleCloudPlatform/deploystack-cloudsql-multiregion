@@ -98,6 +98,11 @@ section_open "Delete instance SQL Test"
     gcloud compute instances delete sql-test --zone ${REGION}-b -q
 section_close
 
+section_open "Delete Cloud SQL instances"
+    gcloud sql instances delete replica -q
+    gcloud sql instances delete ${PREFIX}-db -q
+section_close
+
 section_open "Delete CloudNAT"
     gcloud compute routers delete --region ${REGION} ${PREFIX}-default-nat -q
 section_close
