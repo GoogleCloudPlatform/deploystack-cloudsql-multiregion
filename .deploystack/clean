@@ -110,6 +110,10 @@ section_open "Delete subnets"
     gcloud compute networks subnets delete subnet --region ${REGION} -q
 section_close
 
+section_open "Delete global address"
+    gcloud compute addresses delete cloud-sql --global -q
+section_close
+
 section_open "Delete VPC"
     gcloud compute networks delete ${PREFIX}-vpc -q
 section_close
@@ -117,102 +121,21 @@ section_close
 section_open "Delete all Permissions"
 printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
     gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:bq-datalake@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/bigquery.dataViewer --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:bq-datalake@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/bigquery.dataEditor --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:bq-datalake@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/bigquery.jobUser --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:bq-datalake@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/bigquery.user --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:bq-datalake@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/logging.logWriter --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:bq-datalake@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/monitoring.metricWriter --no-user-output-enabled --all
-
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:df-loading@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/bigquery.dataEditor --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:df-loading@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/bigquery.jobUser --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:df-loading@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/bigquery.user --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:df-loading@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/compute.networkUser --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:df-loading@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/dataflow.worker --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:df-loading@${PROJECT}.iam.gserviceaccount.com \
+    --member serviceAccount:${PREFIX}-gcs@${PROJECT}.iam.gserviceaccount.com \
     --role roles/storage.objectAdmin --no-user-output-enabled --all
-
 printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
     gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:gcs-landing@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/logging.logWriter --no-user-output-enabled --all
+    --member serviceAccount:${PREFIX}-sql@${PROJECT}.iam.gserviceaccount.com \
+    --role roles/cloudsql.instanceUser --no-user-output-enabled --all
 printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
     gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:gcs-landing@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/monitoring.metricWriter --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:gcs-landing@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/storage.objectAdmin --no-user-output-enabled --all
-
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:orchestrator@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/bigquery.admin --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:orchestrator@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/bigquery.dataViewer --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:orchestrator@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/dataflow.admin --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:orchestrator@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/logging.logWriter --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:orchestrator@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/monitoring.metricWriter --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:orchestrator@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/iam.serviceAccountUser --no-user-output-enabled --all
-printf "Disabling Cloud Build Service Account from deploying to Cloud Run on $PROJECT\n"
-    gcloud projects remove-iam-policy-binding $PROJECT \
-    --member serviceAccount:orchestrator@${PROJECT}.iam.gserviceaccount.com \
-    --role roles/storage.objectViewer --no-user-output-enabled --all
+    --member serviceAccount:${PREFIX}-sql@${PROJECT}.iam.gserviceaccount.com \
+    --role roles/cloudsql.client --no-user-output-enabled --all
 section_close
 
 section_open "Delete Service accounts"
-    gcloud iam service-accounts delete bq-datalake@${PROJECT}.iam.gserviceaccount.com -q
-    gcloud iam service-accounts delete df-loading@${PROJECT}.iam.gserviceaccount.com -q
-    gcloud iam service-accounts delete gcs-landing@${PROJECT}.iam.gserviceaccount.com -q
-    gcloud iam service-accounts delete orchestrator@${PROJECT}.iam.gserviceaccount.com -q
+    gcloud iam service-accounts delete ${PREFIX}-sql@${PROJECT}.iam.gserviceaccount.com -q
+    gcloud iam service-accounts delete ${PREFIX}-gcs@${PROJECT}.iam.gserviceaccount.com -q
 section_close
 
 printf "$DIVIDER"
