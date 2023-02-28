@@ -1,5 +1,4 @@
-
-# Copyright 2021 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-# I think it's a good idea to test your scripts. It's kinda awkward but you'll 
-# be happy you did 
-
 
 # DON'T REMOVE FROM test script.
 CYAN='\033[0;36m'
@@ -77,7 +72,6 @@ function evalTest() {
     printf "$expected is ok\n"
 }
 # END DON'T REMOVE FROM test script.
-
 
 get_project_id PROJECT
 get_project_number PROJECT_NUMBER $PROJECT
