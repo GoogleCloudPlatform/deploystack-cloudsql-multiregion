@@ -107,7 +107,7 @@ section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modul
 section_close
 
 section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v19.0.0 exists"
-    evalTest 'gcloud compute firewall-rules describe ${PREFIX}-vpc-ingress-tag-ssh --format="value(name)"' "${PREFIX}-vpc-ingress-admins"
+    evalTest 'gcloud compute firewall-rules describe ${PREFIX}-vpc-ingress-tag-ssh --format="value(name)"' "${PREFIX}-vpc-ingress-tag-ssh"
 section_close
 
 section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v19.0.0 exists"
