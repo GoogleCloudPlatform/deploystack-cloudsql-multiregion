@@ -16,7 +16,7 @@ module "gcs" {
   source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v19.0.0"
   project_id     = module.project.project_id
   prefix         = var.prefix
-  name           = "data"
+  name           = "${module.project.project_id}-data"
   location       = var.regions.primary
   storage_class  = "REGIONAL"
   encryption_key = var.service_encryption_keys != null ? try(var.service_encryption_keys[var.regions.primary], null) : null
