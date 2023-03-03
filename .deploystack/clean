@@ -84,12 +84,12 @@ section_open "Deleting buckets"
     gcloud storage rm --recursive gs://${PREFIX}-data
 section_close
 
-section_open "Delete attached disk"
-    gcloud compute disks delete sql-test-attached-disk --zone ${REGION}-b -q
-section_close
-
 section_open "Delete instance SQL Test"
     gcloud compute instances delete sql-test --zone ${REGION}-b -q
+section_close
+
+section_open "Delete attached disk"
+    gcloud compute disks delete sql-test-attached-disk --zone ${REGION}-b -q
 section_close
 
 section_open "Delete Cloud SQL instances"
