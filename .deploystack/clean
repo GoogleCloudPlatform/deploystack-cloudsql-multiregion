@@ -81,7 +81,7 @@ REGION=europe-west1
 CMEK_ENCRYPTION=true
 
 section_open "Deleting buckets"
-    gcloud storage rm --recursive gs://${PREFIX}-data
+    gcloud storage rm --recursive gs://${PREFIX}-${PROJECT_ID}-data
 section_close
 
 section_open "Delete instance SQL Test"
