@@ -90,23 +90,23 @@ terraform apply  \
    -var postgres_user_password=$POSTGRES_USER_PASSWORD \
    -auto-approve
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v20.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v23.0.0 exists"
     evalTest 'gsutil ls | grep -c gs://${PREFIX}-${PROJECT_ID}-data' "1"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v20.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v23.0.0 exists"
     evalTest 'gcloud iam service-accounts describe ${PREFIX}-gcs@${PROJECT}.iam.gserviceaccount.com --format="value(email)"' "${PREFIX}-gcs@${PROJECT}.iam.gserviceaccount.com"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v20.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v23.0.0 exists"
     evalTest 'gcloud iam service-accounts describe ${PREFIX}-sql@${PROJECT}.iam.gserviceaccount.com --format="value(email)"' "${PREFIX}-sql@${PROJECT}.iam.gserviceaccount.com"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v20.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v23.0.0 exists"
     evalTest 'gcloud compute firewall-rules describe ${PREFIX}-vpc-ingress-tag-ssh --format="value(name)"' "${PREFIX}-vpc-ingress-tag-ssh"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v20.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v23.0.0 exists"
     evalTest 'gcloud compute routers describe ${PREFIX}-default-nat --region ${REGION} --format="value(name)"' "${PREFIX}-default-nat"
 section_close
 
@@ -116,23 +116,23 @@ terraform destroy  \
    -var postgres_user_password=$POSTGRES_USER_PASSWORD \
    -auto-approve
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v20.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/gcs?ref=v23.0.0 does not exists"
     evalTest 'gsutil ls | grep -c gs://${PREFIX}-${PROJECT_ID}-data' "0"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v20.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v23.0.0 does not exists"
     evalTest 'gcloud iam service-accounts describe ${PREFIX}-gcs@${PROJECT}.iam.gserviceaccount.com --format="value(email)"' "EXPECTERROR"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v20.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v23.0.0 does not exists"
     evalTest 'gcloud iam service-accounts describe ${PREFIX}-sql@${PROJECT}.iam.gserviceaccount.com --format="value(email)"' "EXPECTERROR"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v20.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v23.0.0 does not exists"
     evalTest 'gcloud compute firewall-rules describe ${PREFIX}-vpc-ingress-tag-ssh --format="value(name)"' "EXPECTERROR"
 section_close
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v20.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v23.0.0 does not exists"
     evalTest 'gcloud compute routers describe ${PREFIX}-default-nat --region ${REGION} --format="value(name)"' "EXPECTERROR"
 section_close
 
