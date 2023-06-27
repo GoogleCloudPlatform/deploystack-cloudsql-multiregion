@@ -1,8 +1,12 @@
 [![GC Start](gcp_banner.png)](https://cloud.google.com/?utm_source=github&utm_medium=referral&utm_campaign=GCP&utm_content=packages_repository_banner)
-# Cloud SQL instance with multi-region read replicas
+# Prepare your Database for Disaster Recovery with Cloud SQL
 
 ## Introduction
-From startups to enterprises, database disaster recovery planning is critical to provide the continuity of processing. While Cloud SQL does provide high availability within a single region, regional failures or unavailability can occur from cyber attacks to natural disasters. Such incidents or outages lead to a quick domino effect for startups, making it difficult to recover from the loss of revenue and customers, which is especially true for bootstrapped or lean startups. It is critical that your database is regionally resilient and made available promptly in a secondary region. With Cloud SQL for PostgreSQL, you can configure cross-region read replicas for a complete DR failover and fallback process.
+_This architecture uses click-to-deploy so you can spin up infrastructure in minutes using terraform!_
+
+In today's world, where downtime can cause significant revenue loss and impact customer satisfaction, having a highly available database is critical. Nowadays, critical, global applications require highly available databases that are able to provide low latency access to data and that minimize downtime caused by infrastructure failures or disasters. 
+
+Whether you're a developer, a DevOps engineer, or a system administrator, this **click-to-deploy architecture** is designed to help you automate the deployment and management of your **Cloud SQL PostgreSQL database** with support for failover. With this solution, you can deploy a highly available relational database that ensures your data is always accessible and resilient to failures, while also providing disaster recovery capabilities in case of a disaster.
 
 This blueprint creates a [Cloud SQL instance](https://cloud.google.com/sql) with multi-region read replicas as described in the [Cloud SQL for PostgreSQL disaster recovery](https://cloud.google.com/architecture/cloud-sql-postgres-disaster-recovery-complete-failover-fallback) article.
 
