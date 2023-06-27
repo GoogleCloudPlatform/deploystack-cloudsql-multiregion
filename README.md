@@ -15,12 +15,13 @@ The solution is resilient to a regional outage. To get familiar with the procedu
 This repo is based on the Cloud Foundation Fabric blueprint available [here](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/blueprints/data-solutions/cloudsql-multiregion).
 
 ## Use cases:
+These are some examples of the use cases where it is critical to have a highly available database:
 
-Configuring the CloudSQL instance for DR can be done in the following steps:
-
-- Create an HA Cloud SQL for PostgreSQL instance.
-- Deploy a cross-region read replica on Google Cloud using Cloud SQL for PostgreSQL.
-
+* **Any application that has a strong high availability requirement**
+* **E-commerce:** An e-commerce website that serves customers all over the world could use a multi-region database to ensure that its website is always available, even if there is an outage in one region.
+* **Social media:** A social media platform that has users all over the world could use a multi-region database to improve performance and scalability.
+* **Financial services**: A financial services company that is required to have its data replicated across multiple regions for compliance purposes could use a multi-region database to meet those requirements.
+  
 The solution will use:
 
 - [VPC](https://cloud.google.com/vpc) with Private Service Access to deploy the instances and VM
