@@ -22,6 +22,12 @@ These are some examples of the use cases where it is critical to have a highly a
 * **Social media:** A social media platform that has users all over the world could use a multi-region database to improve performance and scalability.
 * **Financial services**: A financial services company that is required to have its data replicated across multiple regions for compliance purposes could use a multi-region database to meet those requirements.
   
+## Architecture
+
+This is the high level diagram:
+
+![Cloud SQL multi-region.](diagram.png "Cloud SQL multi-region")
+
 The solution will use:
 
 - [VPC](https://cloud.google.com/vpc) with Private Service Access to deploy the instances and VM
@@ -29,10 +35,6 @@ The solution will use:
 - [Goocle Cloud Storage](https://cloud.google.com/storage/) bucket to handle database import/export
 - [Google Cloud Engine](https://cloud.google.com/compute) instance to connect to the Posgre SQL instance
 - [Google Cloud NAT](https://cloud.google.com/nat/docs/overview) to access internet resources
-
-This is the high level diagram:
-
-![Cloud SQL multi-region.](diagram.png "Cloud SQL multi-region")
 
 If you're migrating from another Cloud Provider, refer to [this](https://cloud.google.com/free/docs/aws-azure-gcp-service-comparison) documentation to see equivalent services and comparisons in Microsoft Azure and Amazon Web Services.
 
