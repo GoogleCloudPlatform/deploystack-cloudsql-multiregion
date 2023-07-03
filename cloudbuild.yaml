@@ -3,13 +3,13 @@ steps:
     args:
       - 'init'
   - name: 'hashicorp/terraform'
-    args: ['plan', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack-cb', '-var', 'postgres_user_password=$$POSTGRES_USER_PASSWORD', '-var', '"regions={ \"primary\": \"europe-west1\", \"replica-cb\": \"europe-west3\" }"']
+    args: ['plan', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack-cb', '-var', 'postgres_user_password=$$POSTGRES_USER_PASSWORD', '-var', 'regions={ \"primary\": \"europe-west1\", \"replica-cb\": \"europe-west3\" }']
     secretEnv: ['POSTGRES_USER_PASSWORD']
   - name: 'hashicorp/terraform'
-    args: ['apply', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack-cb', '-var', 'postgres_user_password=$$POSTGRES_USER_PASSWORD', '-var', '"regions={ \"primary\": \"europe-west1\", \"replica-cb\": \"europe-west3\" }"', '-auto-approve']
+    args: ['apply', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack-cb', '-var', 'postgres_user_password=$$POSTGRES_USER_PASSWORD', '-var', 'regions={ \"primary\": \"europe-west1\", \"replica-cb\": \"europe-west3\" }', '-auto-approve']
     secretEnv: ['POSTGRES_USER_PASSWORD']
   - name: 'hashicorp/terraform'
-    args: ['destroy', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack-cb', '-var', 'postgres_user_password=$$POSTGRES_USER_PASSWORD', '-var', '"regions={ \"primary\": \"europe-west1\", \"replica-cb\": \"europe-west3\" }"', '-auto-approve']
+    args: ['destroy', '-var', 'project_id=$PROJECT_ID', '-var', 'prefix=deploystack-cb', '-var', 'postgres_user_password=$$POSTGRES_USER_PASSWORD', '-var', 'regions={ \"primary\": \"europe-west1\", \"replica-cb\": \"europe-west3\" }', '-auto-approve']
     secretEnv: ['POSTGRES_USER_PASSWORD']
 availableSecrets:
   secretManager:
