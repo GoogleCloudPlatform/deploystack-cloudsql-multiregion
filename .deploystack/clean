@@ -116,6 +116,11 @@ section_open "Delete global address"
     gcloud compute addresses delete cloud-sql --global -q
 section_close
 
+section_open "Delete routes"
+    gcloud compute routes delete {PREFIX}-vpc-restricted-googleapis -q
+    gcloud compute routes delete {PREFIX}-vpc-private-googleapis -q
+section_close
+
 section_open "Delete VPC"
     gcloud compute networks delete ${PREFIX}-vpc -q
 section_close
