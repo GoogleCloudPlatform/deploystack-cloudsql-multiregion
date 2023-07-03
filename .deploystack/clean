@@ -117,8 +117,8 @@ section_open "Delete global address"
 section_close
 
 section_open "Delete routes"
-    gcloud compute routes delete {PREFIX}-vpc-restricted-googleapis -q
-    gcloud compute routes delete {PREFIX}-vpc-private-googleapis -q
+    gcloud compute routes delete ${PREFIX}-vpc-restricted-googleapis -q
+    gcloud compute routes delete ${PREFIX}-vpc-private-googleapis -q
 section_close
 
 section_open "Delete VPC"
