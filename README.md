@@ -1,8 +1,12 @@
 [![GC Start](gcp_banner.png)](https://cloud.google.com/?utm_source=github&utm_medium=referral&utm_campaign=GCP&utm_content=packages_repository_banner)
-# Cloud SQL instance with multi-region read replicas
+# Prepare your Database for Disaster Recovery with Cloud SQL
 
 ## Introduction
-From startups to enterprises, database disaster recovery planning is critical to provide the continuity of processing. While Cloud SQL does provide high availability within a single region, regional failures or unavailability can occur from cyber attacks to natural disasters. Such incidents or outages lead to a quick domino effect for startups, making it difficult to recover from the loss of revenue and customers, which is especially true for bootstrapped or lean startups. It is critical that your database is regionally resilient and made available promptly in a secondary region. With Cloud SQL for PostgreSQL, you can configure cross-region read replicas for a complete DR failover and fallback process.
+_This architecture uses click-to-deploy so you can spin up infrastructure in minutes using terraform!_
+
+In today's world, where downtime can cause significant revenue loss and impact customer satisfaction, having a highly available database is critical. Nowadays, critical, global applications require highly available databases that are able to provide low latency access to data and that minimize downtime caused by infrastructure failures or disasters. 
+
+Whether you're a developer, a DevOps engineer, or a system administrator, this **click-to-deploy architecture** is designed to help you automate the deployment and management of your **Cloud SQL PostgreSQL database** with support for failover. With this solution, you can deploy a highly available relational database that ensures your data is always accessible and resilient to failures, while also providing disaster recovery capabilities in case of a disaster.
 
 This blueprint creates a [Cloud SQL instance](https://cloud.google.com/sql) with multi-region read replicas as described in the [Cloud SQL for PostgreSQL disaster recovery](https://cloud.google.com/architecture/cloud-sql-postgres-disaster-recovery-complete-failover-fallback) article.
 
@@ -11,11 +15,18 @@ The solution is resilient to a regional outage. To get familiar with the procedu
 This repo is based on the Cloud Foundation Fabric blueprint available [here](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/blueprints/data-solutions/cloudsql-multiregion).
 
 ## Use cases:
+These are some examples of the use cases where it is critical to have a highly available database:
 
-Configuring the CloudSQL instance for DR can be done in the following steps:
+* **Any application that has a strong high availability requirement**
+* **E-commerce:** An e-commerce website that serves customers all over the world could use a multi-region database to ensure that its website is always available, even if there is an outage in one region.
+* **Social media:** A social media platform that has users all over the world could use a multi-region database to improve performance and scalability.
+* **Financial services**: A financial services company that is required to have its data replicated across multiple regions for compliance purposes could use a multi-region database to meet those requirements.
+  
+## Architecture
 
-- Create an HA Cloud SQL for PostgreSQL instance.
-- Deploy a cross-region read replica on Google Cloud using Cloud SQL for PostgreSQL.
+This is the high level diagram:
+
+![Cloud SQL multi-region.](diagram.png "Cloud SQL multi-region")
 
 The solution will use:
 
@@ -24,10 +35,6 @@ The solution will use:
 - [Goocle Cloud Storage](https://cloud.google.com/storage/) bucket to handle database import/export
 - [Google Cloud Engine](https://cloud.google.com/compute) instance to connect to the Posgre SQL instance
 - [Google Cloud NAT](https://cloud.google.com/nat/docs/overview) to access internet resources
-
-This is the high level diagram:
-
-![Cloud SQL multi-region.](diagram.png "Cloud SQL multi-region")
 
 If you're migrating from another Cloud Provider, refer to [this](https://cloud.google.com/free/docs/aws-azure-gcp-service-comparison) documentation to see equivalent services and comparisons in Microsoft Azure and Amazon Web Services.
 
