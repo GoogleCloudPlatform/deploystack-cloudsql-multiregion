@@ -38,6 +38,10 @@ The solution will use:
 
 If you're migrating from another Cloud Provider, refer to [this](https://cloud.google.com/free/docs/aws-azure-gcp-service-comparison) documentation to see equivalent services and comparisons in Microsoft Azure and Amazon Web Services.
 
+## Costs
+
+Pricing Estimates - We have created a sample estimate based on some usage we see from new startups looking to scale. This estimate would give you an idea of how much this deployment would essentially cost per month at this scale and you extend it to the scale you further prefer. Here's the [link](https://cloud.google.com/products/calculator#id=bce4dc30-5e2d-4c9d-8963-078be1286258).
+
 ## Requirements
 
 This blueprint will deploy all its resources into the project defined by the `project_id` variable. Please note that we assume this project already exists. However, if you provide the appropriate values to the `project_create` variable, the project will be created as part of the deployment.
@@ -45,7 +49,6 @@ This blueprint will deploy all its resources into the project defined by the `pr
 If `project_create` is left to `null`, the identity performing the deployment needs the `owner` role on the project defined by the `project_id` variable. Otherwise, the identity performing the deployment needs `resourcemanager.projectCreator` on the resource hierarchy node specified by `project_create.parent` and `billing.user` on the billing account specified by `project_create.billing_account_id`.
 
 ### Spinning Up The Architecture
-
 
 Before we deploy the architecture, you will need the following information:
 
