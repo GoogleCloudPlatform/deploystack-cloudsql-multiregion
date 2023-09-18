@@ -130,7 +130,7 @@ module "vpc" {
 }
 
 module "firewall" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v23.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v26.0.0"
   count      = local.use_shared_vpc ? 0 : 1
   project_id = module.project.project_id
   network    = module.vpc.0.name
