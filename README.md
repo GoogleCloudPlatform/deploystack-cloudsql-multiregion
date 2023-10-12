@@ -17,10 +17,10 @@ This repo is based on the Cloud Foundation Fabric blueprint available [here](htt
 ## Use cases:
 These are some examples of the use cases where it is critical to have a highly available database:
 
-* **Any application that has a strong high availability requirement**
+* **General Applications:** Any application with a strong high availability requirement can greatly benefit from a reliable database solution.
 * **E-commerce:** An e-commerce website that serves customers all over the world could use a multi-region database to ensure that its website is always available, even if there is an outage in one region.
-* **Social media:** A social media platform that has users all over the world could use a multi-region database to improve performance and scalability.
-* **Financial services**: A financial services company that is required to have its data replicated across multiple regions for compliance purposes could use a multi-region database to meet those requirements.
+* **Social media:** A global social media platform can significantly enhance its performance and scalability by implementing a multi-region database system. Users worldwide will experience seamless interaction and faster response times.
+* **Financial services**: In the realm of financial services, where data replication across multiple regions is mandatory for compliance, a multi-region database is the ideal solution. This ensures regulatory requirements are met while maintaining high availability and data integrity.
   
 ## Architecture
 
@@ -46,7 +46,7 @@ Pricing Estimates - We have created a sample estimate based on some usage we see
 
 This blueprint will deploy all its resources into the project defined by the `project_id` variable. Please note that we assume this project already exists. However, if you provide the appropriate values to the `project_create` variable, the project will be created as part of the deployment.
 
-If `project_create` is left to `null`, the identity performing the deployment needs the `owner` role on the project defined by the `project_id` variable. Otherwise, the identity performing the deployment needs `resourcemanager.projectCreator` on the resource hierarchy node specified by `project_create.parent` and `billing.user` on the billing account specified by `project_create.billing_account_id`.
+If `project_create` is set to `null`, the identity performing the deployment needs the `owner` role on the project defined by the `project_id` variable. Alternatively, the identity performing the deployment needs `resourcemanager.projectCreator` on the resource hierarchy node specified by `project_create.parent` and `billing.user` on the billing account specified by `project_create.billing_account_id`.
 
 ### Spinning Up The Architecture
 
@@ -55,7 +55,7 @@ Before we deploy the architecture, you will need the following information:
 - The service project ID.
 - A unique prefix that you want all the deployed resources to have (for example: cloudsql-multiregion-hpjy). This must be a string with no spaces or tabs.
 
-Click on the button below, sign in if required and when the prompt appears, click on “confirm”. It will walk you through setting up your architecture.
+Click the button below, sign in if necessary, and follow the prompts to confirm. The system will guide you through the architecture setup process.
 
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/GoogleCloudPlatform/deploystack-cloudsql-multiregion&cloudshell_image=gcr.io%2Fds-artifacts-cloudshell%2Fdeploystack_custom_image&cloudshell_git_branch=main&cloudshell_tutorial=tutorial.md)
 
@@ -89,11 +89,11 @@ network_config = {
   }
 ```
 
-To run this example, the Shared VPC project needs to have:
+To successfully run this example, ensure the Shared VPC project has:
  - A Private Service Connect with a range of `/24` (example: `10.60.0.0/24`) to deploy the Cloud SQL instance.
- - Internet access configured (for example Cloud NAT) to let the Test VM download packages. 
+ - Internet access configured (for example Cloud NAT) to allow the Test VM download packages. 
 
-In order to run the example and deploy Cloud SQL on a shared VPC the identity running Terraform must have the following IAM role on the Shared VPC Host project.
+To run the example and deploy Cloud SQL on a shared VPC, the identity running Terraform must possess the following IAM role on the Shared VPC Host project.
  - Compute Network Admin (roles/compute.networkAdmin)
  - Compute Shared VPC Admin (roles/compute.xpnAdmin)
 
