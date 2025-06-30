@@ -56,7 +56,7 @@ resource "google_sql_user" "service-account" {
 }
 
 module "service-account-sql" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v23.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v41.0.0"
   project_id = module.project.project_id
   name       = "${var.prefix}-sql"
 }
