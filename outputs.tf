@@ -37,7 +37,7 @@ output "project_id" {
 output "demo_commands" {
   description = "Demo commands."
   value = {
-    "01_ssh"             = "gcloud compute ssh ${module.test-vm.instance.name} --project ${module.project.name} --zone ${var.regions.primary}-b"
+    "01_ssh"             = "gcloud compute ssh ${nonsensitive(module.test-vm.instance.name)} --project ${module.project.name} --zone ${var.regions.primary}-b"
     "02_cloud_sql_proxy" = "cloud_sql_proxy -instances=${module.db.connection_name}=tcp:5432 &"
     "03_psql"            = "psql 'host=127.0.0.1 port=5432 sslmode=disable dbname=${var.postgres_database} user=postgres'"
   }
