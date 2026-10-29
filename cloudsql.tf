@@ -13,15 +13,23 @@
 # limitations under the License.
 
 module "db" {
-  source              = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/cloudsql-instance?ref=v23.0.0"
+  source              = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/cloudsql-instance?ref=v59.2.0"
   project_id          = module.project.project_id
   availability_type   = var.sql_configuration.availability_type
   encryption_key_name = var.service_encryption_keys != null ? try(var.service_encryption_keys[var.regions.primary], null) : null
-  network             = local.vpc_self_link
-  name                = "${var.prefix}-db"
-  region              = var.regions.primary
-  database_version    = var.sql_configuration.database_version
-  tier                = var.sql_configuration.tier
+  network_config = {
+    connectivity = {
+      psa_config = {
+        private_network = local.vpc_self_link
+      }
+    }
+  }
+  name                          = "${var.prefix}-db"
+  region                        = var.regions.primary
+  database_version              = var.sql_configuration.database_version
+  tier                          = var.sql_configuration.tier
+  gcp_deletion_protection       = false
+  terraform_deletion_protection = false
   flags = {
     "cloudsql.iam_authentication" = "on"
   }
@@ -34,7 +42,9 @@ module "db" {
   }
   databases = [var.postgres_database]
   users = {
-    postgres = var.postgres_user_password
+    postgres = {
+      password = var.postgres_user_password
+    }
   }
 }
 
@@ -50,13 +60,13 @@ resource "google_sql_user" "service-account" {
   for_each = toset(var.data_eng_principals)
   project  = module.project.project_id
   # Omit the .gserviceaccount.com suffix in the email
-  name     = regex("(.+)(gserviceaccount)", module.service-account-sql.email)[0]
+  name     = regex("(.+)(.gserviceaccount)", module.service-account-sql.email)[0]
   instance = module.db.name
   type     = "CLOUD_IAM_SERVICE_ACCOUNT"
 }
 
 module "service-account-sql" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v23.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v59.2.0"
   project_id = module.project.project_id
   name       = "${var.prefix}-sql"
 }

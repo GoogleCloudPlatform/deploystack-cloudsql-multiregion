@@ -24,7 +24,7 @@ locals {
 }
 
 module "test-vm" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v23.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v59.2.0"
   project_id = module.project.project_id
   zone       = "${var.regions.primary}-b"
   name       = "sql-test"
@@ -34,24 +34,25 @@ module "test-vm" {
     nat        = false
     addresses  = null
   }]
-  attached_disks = [
-    {
-      name        = "attached-disk"
-      size        = 10
-      source      = null
-      source_type = null
-      options     = null
+  attached_disks = {
+    attached-disk = {
+      initialize_params = {
+        size = 10
+      }
     }
-  ]
-  service_account        = module.service-account-sql.email
-  service_account_scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+  }
+  service_account = {
+    email  = module.service-account-sql.email
+    scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+  }
   boot_disk = {
     initialize_params = {
-      image = "projects/debian-cloud/global/images/family/debian-10"
-      size  = 10
-      type  = "pd-ssd"
+      size = 10
+      type = "pd-ssd"
     }
-
+    source = {
+      image = "projects/debian-cloud/global/images/family/debian-12"
+    }
   }
   encryption = var.service_encryption_keys != null ? {
     encrypt_boot            = true
