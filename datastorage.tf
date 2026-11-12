@@ -24,7 +24,7 @@ module "gcs" {
 }
 
 module "service-account-gcs" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v59.2.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/iam-service-account?ref=v60.0.0"
   project_id = module.project.project_id
   name       = "${var.prefix}-gcs"
 }
